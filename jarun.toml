@@ -1,6 +1,9 @@
 
-[Core]
-  jar = ".\\lib\\airlink.jar"
+[Test]
+  update = "true"
 
 [Java]
-  home = "C:\\Program Files\\Java\\jdk1.8.0_111"
+  home = ".\\jre"
+
+[Core]
+  jar = ".\\lib\\airlink.jar"

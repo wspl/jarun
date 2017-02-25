@@ -23,12 +23,18 @@ func main() {
 	inst := flag.Bool("inst", false, "install jre mode")
 	flag.Parse()
 
+	if *inst {
+		RequestJRE()
+		return
+	}
+
 	if len(config.String("Core.jar")) == 0 {
 		config.Set("Core.jar", " ")
 	}
 
-	if *inst {
-		RequestJRE()
+	if config.String("Test.update") == "true" {
+		CallRequestJRE()
+		RunJar(`.\jre`)
 		return
 	}
 
