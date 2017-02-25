@@ -23,6 +23,10 @@ func main() {
 	inst := flag.Bool("inst", false, "install jre mode")
 	flag.Parse()
 
+	if len(config.String("Core.jar")) == 0 {
+		config.Set("Core.jar", " ")
+	}
+
 	if *inst {
 		RequestJRE()
 		return
@@ -41,11 +45,11 @@ func main() {
 	}
 
 	CallRequestJRE()
-	config.Set("Java.home", `.\jre`)
-	RunJar(java)
+	RunJar(`.\jre`)
 }
 
 func RunJar(java string) {
+	config.Set("Java.home", java)
 	exePath, _ := os.Executable()
 	vmOptBuf, err := ioutil.ReadFile(exePath + ".vmoptions")
 	vmOpt := string(vmOptBuf)
